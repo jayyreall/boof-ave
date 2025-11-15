@@ -1,0 +1,92 @@
+/* Base reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Page base */
+body {
+  background-color: #000000;
+  color: #ffffff;
+  font-family: sans-serif;
+  line-height: 1.6;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Layout */
+main {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.hero { text-align: center; }
+
+footer {
+  text-align: center;
+  padding: 20px;
+}
+
+/* ================================
+   Seamless single-row marquee
+   ================================ */
+:root {
+  --ticker-gap: 64px;     /* spacing between words */
+  --ticker-speed: 18s;    /* lower = faster */
+}
+
+.ticker {
+  overflow: hidden;
+  width: 100%;
+  background: transparent;        /* no bar behind text */
+  border-bottom: none;            /* remove the thin line */
+  line-height: 1;                 /* tighten line box */
+  /* soft edge fade so it looks premium (still invisible over black) */
+  mask-image: linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%);
+  -webkit-mask-image: linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%);
+}
+
+.ticker__move {
+  display: flex;
+  width: max-content;             /* shrink-wrap to content */
+  animation: marquee var(--ticker-speed) linear infinite;
+  will-change: transform;
+}
+
+/* Two identical groups placed back-to-back create a perfect loop.
+   We translate exactly one group width (-50%). */
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
+.ticker__group {
+  display: inline-flex;
+  flex: 0 0 auto;                 /* don't shrink */
+  gap: var(--ticker-gap);         /* even spacing between items */
+  padding: 10px 0;
+  padding-right: var(--ticker-gap); /* add trailing gap so the seam matches spacing */
+}
+
+.ticker__group span {
+  display: inline-block;
+  font-weight: 800;
+  letter-spacing: 0.5px;
+  font-size: clamp(18px, 2vw, 28px);
+  white-space: nowrap;
+}
+
+.ticker__group sup {
+  font-size: 0.55em;              /* smaller ™ */
+  vertical-align: super;          /* raise it */
+  opacity: 0.95;
+}
+
+/* Accessibility: respect reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .ticker__move { animation: none; }
+}
