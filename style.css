@@ -18,7 +18,7 @@
 body {
   background-color: var(--black);
   color: var(--white);
-  font-family: "Helvetica Neue", Arial, sans-serif;
+  font-family: Interstate, Helvetica Neue, Arial, sans-serif;
   line-height: 1.6;
   min-height: 100vh;
   display: flex;
