@@ -254,6 +254,24 @@ p {
   font-size: 0.95rem;
 }
 
+.logo-feature {
+  align-self: center;
+  max-width: 500px;
+  width: min(100%, 500px);
+  margin: clamp(0.5rem, 2vw, 1.25rem) auto;
+}
+
+.logo-feature img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.services + .logo-feature,
+.logo-feature + .welcome {
+  margin-top: -0.75rem;
+}
+
 footer {
   text-align: center;
   padding: 2.5rem 1rem;
